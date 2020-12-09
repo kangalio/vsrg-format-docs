@@ -1,0 +1,293 @@
+<div id="WikiaMainContentContainer" class="WikiaMainContentContainer">
+				
+													
+				
+				<div id="WikiaArticle" class="WikiaArticle">
+					<div class="home-top-right-ads">
+										</div>
+
+					
+					<div id="mw-content-text" dir="ltr" class="mw-content-ltr mw-content-text" lang="en"><!-- Google Tag Manager (noscript) --><noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MDPTN53" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript><!-- End Google Tag Manager (noscript) --><p><b>O2Jam note files</b> (unofficial) / <b>O2Jam music files</b> are files that carry arrangements of notes and general information of a song that can be played in the rhythm music game O2Jam.
+</p><p>By convention, the OJN file and the corresponding OJM file have the same filename.
+</p><p><a href="/wiki/Integer" title="Integer">Integers</a> in this file format are in <a class="new" title="Endianness (page does not exist)" rel="nofollow" data-uncrawlable-url="L3dpa2kvRW5kaWFubmVzcz9hY3Rpb249ZWRpdCZyZWRsaW5rPTE=">little-endian</a> (reversed order). Integers, unless specified, are assumed to be 32-bit integers. "<a href="/wiki/Short" title="Short">Short</a> integers" are 2-bit integers. "Bytes" are 8-bit integers. "<a href="/wiki/Single" title="Single">Singles</a>" are 32-bit floating-point values.
+</p>
+<nav id="toc" class="toc" data-loaded="false"><div id="toctitle"><h2>Contents</h2><span class="toctoggle">[<a href="#" class="internal" id="togglelink" data-show="show" data-hide="hide" title="show">show</a>]</span></div><ol><li class="toclevel-1">
+	<a href="#Specification" rel="nofollow">Specification</a>
+<ol>	<li class="toclevel-2">
+		<a href="#Header" rel="nofollow">Header</a>
+	</li>
+	<li class="toclevel-2">
+		<a href="#Note_sections" rel="nofollow">Note sections</a>
+	</li>
+	<li class="toclevel-2">
+		<a href="#Block_specification" rel="nofollow">Block specification</a>
+<ol>		<li class="toclevel-3">
+			<a href="#Data_point_specification" rel="nofollow">Data point specification</a>
+		</li>
+		<li class="toclevel-3">
+			<a href="#Channel_assignment" rel="nofollow">Channel assignment</a>
+		</li>
+</ol>	</li>
+	<li class="toclevel-2">
+		<a href="#Image_section" rel="nofollow">Image section</a>
+	</li>
+</ol></li><li class="toclevel-1">
+	<a href="#See_also" rel="nofollow">See also</a>
+</li><li class="toclevel-1">
+	<a href="#Notes_and_references" rel="nofollow">Notes and references</a>
+</li>
+</ol></nav>
+<h2><span class="mw-headline" id="Specification">Specification</span><span class="editsection"><a href="/wiki/O2Jam_note_files?action=edit&amp;section=1" title="Edit Specification section"><img src="data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D" class="sprite edit-pencil">Edit</a></span></h2>
+<h3><span class="mw-headline" id="Header">Header</span><span class="editsection"><a href="/wiki/O2Jam_note_files?action=edit&amp;section=2" title="Edit Header section"><img src="data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D" class="sprite edit-pencil">Edit</a></span></h3>
+<p>(300 bytes)
+</p>
+<table class="wikitable">
+<tbody><tr>
+<th> Offset </th><th> Size </th><th> Description
+</th></tr>
+<tr>
+<td> 0  (0)
+</td><td> 4
+</td><td> Song ID (Official songs start with 100). Integer.
+</td></tr>
+<tr>
+<td> 4  (4)
+</td><td> 4
+</td><td> Hex <code>4F 4A 4E 00</code> (reads "OJN\0"). Null-terminated string, fixed.
+</td></tr>
+<tr>
+<td> 8  (8)
+</td><td> 4
+</td><td> Encoder value (9A 99 39 40). Unknown type, fixed.
+</td></tr>
+<tr>
+<td> 12  (C)
+</td><td> 4
+</td><td> Genre (see below). Integer.
+</td></tr>
+<tr>
+<td> 16  (10)
+</td><td> 4
+</td><td> BPM, as it will be displayed when the song is selected. Single.
+</td></tr>
+<tr>
+<td> 20  (14)
+</td><td> 8
+</td><td> Difficulty level (for each of Easy, Normal and Hard; last 2 bits unused). Short integer each.
+</td></tr>
+<tr>
+<td> 28  (1C)
+</td><td> 12
+</td><td> (Total) note count per difficulty. (×3, with background music notes) (Easy, Normal and Hard) Integer each.
+</td></tr>
+<tr>
+<td> 40  (28)
+</td><td> 12
+</td><td> Playable note count per difficulty. (×3, without background music notes) (Easy, Normal and Hard. Integer each.
+</td></tr>
+<tr>
+<td> 52  (34)
+</td><td> 12
+</td><td> Measure count per difficulty. (×3) (Easy, Normal and Hard) Integer each.
+</td></tr>
+<tr>
+<td> 64  (40)
+</td><td> 12
+</td><td> Block count per difficulty. See <a href="#Note_section">#Note section</a>. (×3) (Easy, Normal and Hard) Integer each.
+</td></tr>
+<tr>
+<td> 76  (4C)
+</td><td> 2
+</td><td> Unknown, always hex <code>1D</code> (decimal 29)
+</td></tr>
+<tr>
+<td> 78  (4E)
+</td><td> 4
+</td><td> Unknown, always equal to the song ID. Integer.
+</td></tr>
+<tr>
+<td> 82  (52)
+</td><td> 58
+</td><td> Title. Null-terminated string.
+</td></tr>
+<tr>
+<td> 140  (8C)
+</td><td> 64
+</td><td> Artist. Null-terminated string.
+</td></tr>
+<tr>
+<td> 204  (CC)
+</td><td> 32
+</td><td> Notecharter. Null-terminated string.
+</td></tr>
+<tr>
+<td> 236  (EC)
+</td><td> 32
+</td><td> Name of the OJM file. Null-terminated string.
+</td></tr>
+<tr>
+<td> 268  (10C)
+</td><td> 4
+</td><td> Size of the title image in the image section, in bytes. Integer.
+</td></tr>
+<tr>
+<td> 272  (110)
+</td><td> 12
+</td><td> Duration of the song in seconds. (×3) (Easy, Normal and Hard). Integer.
+</td></tr>
+<tr>
+<td> 284  (11C)
+</td><td> 16
+</td><td> Offsets in the file for Easy, Normal and Hard note sections. Integer each. (Consequently, the first field here would be always 0x2C 01 00 00 in little-endian = 0x12C = 300.) Empty note sections have a size of 0. (For example, if the easy section is empty, the offsets for easy and normal would be the same)
+</td></tr>
+<tr>
+<td> 300  (12C)
+</td><td> 4
+</td><td> Offset in the file for the image section.
+</td></tr>
+<tr>
+<td> 304  (130)
+</td><td>
+</td><td> <i>Terminal offset</i>
+</td></tr></tbody></table>
+<ul><li> Strings
+<dl><dd> <a href="/wiki/String" title="String">Strings</a> such as the artist field are null-terminated. Maximum size of string is 31 characters for a 32-bit space. Unused space are filled with zeros (corresponding to the null character (NUL "\0")).
+</dd></dl>
+</li></ul>
+<ul><li> Genre
+<dl><dd>Each integer corresponds to a genre:
+</dd></dl>
+<ul><li> 0 - Ballad
+</li><li> 1 - Rock
+</li><li> 2 - Dance
+</li><li> 3 - Techno
+</li><li> 4 - Hip-hop
+</li><li> 5 - Soul/R&amp;B
+</li><li> 6 - Jazz
+</li><li> 7 - Funk
+</li><li> 8 - Classical
+</li><li> 9 - Traditional
+</li><li> 10 - Etc.
+</li></ul>
+</li></ul>
+<h3><span class="mw-headline" id="Note_sections">Note sections</span><span class="editsection"><a href="/wiki/O2Jam_note_files?action=edit&amp;section=3" title="Edit Note sections section"><img src="data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D" class="sprite edit-pencil">Edit</a></span></h3>
+<p>The full specification is unknown.
+</p><p>There are three note sections for easy, normal and hard difficulty.
+</p><p>Each section is composed of blocks. The total number of blocks in each note section is specified in the <a href="#Header">header</a>.
+</p>
+<h3><span class="mw-headline" id="Block_specification">Block specification</span><span class="editsection"><a href="/wiki/O2Jam_note_files?action=edit&amp;section=4" title="Edit Block specification section"><img src="data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D" class="sprite edit-pencil">Edit</a></span></h3>
+<p>Each block contains a header and the main message. The header is as follows:
+</p>
+<table class="wikitable">
+<tbody><tr>
+<th> Offset </th><th> Size </th><th> Description
+</th></tr>
+<tr>
+<td> 0  (0)
+</td><td> 4
+</td><td> The measure number on which the block is assigned. Integer.
+</td></tr>
+<tr>
+<td> 4  (4)
+</td><td> 2
+</td><td> The channel type. Short integer.
+</td></tr>
+<tr>
+<td> 6  (6)
+</td><td> 2
+</td><td> The number of data points in the block. Short integer.
+</td></tr></tbody></table>
+<h4><span class="mw-headline" id="Data_point_specification">Data point specification</span><span class="editsection"><a href="/wiki/O2Jam_note_files?action=edit&amp;section=5" title="Edit Data point specification section"><img src="data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D" class="sprite edit-pencil">Edit</a></span></h4>
+<p>Data points follow the block header. These are 32 bits long. On channel 1 (BPM change), this is just a single value representing the new BPM to use in the song. On channels 2 to 8 (playable notes), the structure is as follows:
+</p>
+<table class="wikitable">
+<tbody><tr>
+<th> Offset </th><th> Size </th><th> Description
+</th></tr>
+<tr>
+<td> 0  (0)
+</td><td> 2
+</td><td> Determines whether to use the WAV or the OGG category. (Values unknown)
+</td></tr>
+<tr>
+<td> 2  (2)
+</td><td> 1
+</td><td>
+</td></tr>
+<tr>
+<td> 3  (3)
+</td><td> 1
+</td><td> The note type. Byte.
+</td></tr></tbody></table>
+<p>In an OJM file, imported sounds are categorized into <a href="/wiki/WAV" title="WAV">WAV</a> and <a href="/wiki/OGG" title="OGG" class="mw-redirect">OGG</a>, and are identified by a number starting from 1. References are distinct from each category, so WAV003 is different from OGG003. When a reference in a data point is 0, nothing is placed at that point.
+</p><p>Note types:
+</p>
+<ul><li> 0 - normal note
+</li><li> 2 - start of a long note
+</li><li> 3 - end of a long note
+</li></ul>
+<h4><span class="mw-headline" id="Channel_assignment">Channel assignment</span><span class="editsection"><a href="/wiki/O2Jam_note_files?action=edit&amp;section=6" title="Edit Channel assignment section"><img src="data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D" class="sprite edit-pencil">Edit</a></span></h4>
+<ul><li> 1 - BPM change.
+</li><li> 2 to 8 - Playable notes.
+</li><li> 9 and above - Background music / auto-play notes.
+</li></ul>
+<p>Note that the block structure is similar to the individual lines in <a href="/wiki/Be-Music_Script" title="Be-Music Script">Be-Music Script</a>. (See sections <a href="/wiki/Be-Music_Script#Game_data" title="Be-Music Script">Game data</a> and <a href="/wiki/Be-Music_Script#Channel_assignment" title="Be-Music Script">Channel assignment</a>.) An illustration of the note placement system is also there.
+</p>
+<h3><span class="mw-headline" id="Image_section">Image section</span><span class="editsection"><a href="/wiki/O2Jam_note_files?action=edit&amp;section=7" title="Edit Image section section"><img src="data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D" class="sprite edit-pencil">Edit</a></span></h3>
+<p>This section is composed of a <a href="/wiki/JPEG" title="JPEG" class="mw-redirect">JPEG</a> title image, whose size is specified in the header, and a <a href="/wiki/BMP" title="BMP" class="mw-redirect">BMP</a> thumbnail right after the title image.
+</p>
+<div id="incontent_player" class="gpt-ad"></div><h2><span class="mw-headline" id="See_also">See also</span><span class="editsection"><a href="/wiki/O2Jam_note_files?action=edit&amp;section=8" title="Edit See also section"><img src="data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D" class="sprite edit-pencil">Edit</a></span></h2>
+<ul><li> <a class="new" title="OJM (page does not exist)" rel="nofollow" data-uncrawlable-url="L3dpa2kvT0pNP2FjdGlvbj1lZGl0JnJlZGxpbms9MQ==">OJM</a>
+</li><li> <a href="/wiki/Be-Music_Script" title="Be-Music Script">Be-Music Script</a>
+</li><li> <a href="//o2jam.fandom.com/wiki/" class="extiw" title="w:c:o2jam">O2Jam Wiki</a>
+</li></ul>
+<h2><span class="mw-headline" id="Notes_and_references">Notes and references</span><span class="editsection"><a href="/wiki/O2Jam_note_files?action=edit&amp;section=9" title="Edit Notes and references section"><img src="data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D" class="sprite edit-pencil">Edit</a></span></h2>
+<div class="references-small">
+</div>
+<ul><li> <a rel="nofollow" class="external text" href="http://open2jam.wordpress.com/the-ojn-documentation/">open2jam. The OJN Documentation</a>
+</li><li> <a rel="nofollow" class="external text" href="http://z8.invisionfree.com/O2Jam_Emu/index.php?showtopic=144&amp;view=findpost&amp;p=5567333"><i>Untitled</i>, How 2 Hex OJNList.dat, O2Jam Emu</a> by dragon
+</li></ul>
+<dl><dd><div class="notice metadata plainlinks" id="stub"><i>This article about a <a href="/wiki/File_format" title="File format">file format</a> is a <a href="/wiki/Category:File_format_stubs" title="Category:File format stubs">stub</a>. You can help File Formats Wiki by <a class="text" href="https://fileformats.fandom.com/wiki/O2Jam_note_files?action=edit">expanding it</a>. </i></div>
+</dd></dl>
+
+<!-- 
+NewPP limit report
+Preprocessor node count: 2061/300000
+Post‐expand include size: 13975/2097152 bytes
+Template argument size: 2759/2097152 bytes
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key fileformats:pcache:idhash:2177-0!*!0!!en!*!* -->
+<noscript><link rel="stylesheet" href="https://slot1-images.wikia.nocookie.net/__cb1607106425033/common/extensions/wikia/ImageLazyLoad/css/ImageLazyLoadNoScript.css" /></noscript></div><div class="printfooter">
+Retrieved from "<a href="https://fileformats.fandom.com/wiki/O2Jam_note_files?oldid=4773">https://fileformats.fandom.com/wiki/O2Jam_note_files?oldid=4773</a>"</div>
+
+				<div class="ve-spinner-fade" style="display: none;"></div></div>
+
+															<nav class="article-categories CategorySelect articlePage userCanEdit" id="articleCategories">
+	<div class="container">
+		<div class="special-categories"><a href="/wiki/Special:Categories" title="Special:Categories" class="categoriesLink" rel="nofollow">Categories</a>:</div>
+		<ul class="categories">
+				<li class="category hidden" data-name="File format stubs" data-namespace="" data-outertag="" data-sortkey="" data-type="hidden">
+	<span class="name"><a href="/wiki/Category:File_format_stubs" title="Category:File format stubs">File format stubs</a></span>
+	<ul class="toolbar">
+		<li class="tool editCategory sprite-small edit" title=""></li>
+		<li class="tool removeCategory sprite-small delete" title=""></li>
+	</ul>
+</li>
+							<li class="last">
+					<button class="wikia-button secondary add" id="CategorySelectAdd" type="button">Add category</button>
+					<input autocomplete="off" class="input" id="CategorySelectInput" name="CategorySelectInput" placeholder="Add category..." type="text">				</li>
+					</ul>
+	</div>
+			<div class="toolbar">
+			<button class="wikia-button secondary cancel" id="CategorySelectCancel" type="button">Cancel</button>
+			<button class="wikia-button save" id="CategorySelectSave" type="button" disabled="disabled">Save</button>
+		</div>
+	</nav>									
+													
+				<div class="license-description">
+	Community content is available under <a href="https://www.fandom.com/licensing">CC-BY-SA</a>
+ unless otherwise noted.</div>
+
+							</div> 

@@ -1,4 +1,5 @@
-DTX charts are distributed in archive files containing all the chart data. The archive that [./OceanAvenueMST.dtx] was embedded in had the following files:
+Info: DTX charts are usually distributed in archive files containing all the chart data. For example, the archive that [./OceanAvenueMST.dtx] was embedded in had the following files:
+
 - gv.avi (33622kB)
 - OceanAvenueMST.dtx (14kB)
 - CalendarMST.dtx.score.ini (7kB)
