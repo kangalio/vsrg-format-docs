@@ -2,44 +2,52 @@
 An aggregation of information about as many mania-style VSRG chart formats as possible, including documentation, sample files, and links to code implementations
 
 # Formats
-- `.bms`/`.bme`/`.bml`: **Beat Mania series** chart, including bm98, bms, ddr4, ddr6, bme, bme3, bme5, bme7, 2dx keys
-  - StepMania C++ impl: [reader](https://github.com/stepmania/stepmania/blob/5dad6a1c9a1caba66ebc1aa0feab9bc920399455/src/NotesLoaderBMS.cpp) and [writer](https://github.com/stepmania/stepmania/blob/5dad6a1c9a1caba66ebc1aa0feab9bc920399455/src/NotesWriterBMS.cpp)
-  - [Bemuse JS impl](https://github.com/bemusic/bemuse-notechart/tree/master/src)
-- `.dwi`: **Dance With Intensity** chart
-  - StepMania C++ impl: [reader](https://github.com/stepmania/stepmania/blob/5dad6a1c9a1caba66ebc1aa0feab9bc920399455/src/NotesLoaderDWI.cpp) and [writer](https://github.com/stepmania/stepmania/blob/5dad6a1c9a1caba66ebc1aa0feab9bc920399455/src/NotesWriterDWI.cpp)
-- `.ksf`: **Kick It Up** chart
-  - StepMania C++ impl: [reader](https://github.com/stepmania/stepmania/blob/5dad6a1c9a1caba66ebc1aa0feab9bc920399455/src/NotesLoaderKSF.cpp) and [writer](https://github.com/stepmania/stepmania/blob/5dad6a1c9a1caba66ebc1aa0feab9bc920399455/src/NotesWriterKSF.cpp)
+- `.ojn`: **O2Jam** chart
+  - [Format spec](ojn-docs/format-spec.html)
+- `.osu`: **osu!** chart, including osu, taiko, ctb, mania modes
+  - [Format spec](https://github.com/ppy/osu-wiki/blob/master/wiki/osu!_File_Formats/Osu_(file_format)/en.md)
+  - Parsers found via GitHub search: [C](https://github.com/Gegel85/osumap-parser), [C++](https://github.com/HaselLoyance/osu-parser), [C++](https://github.com/ShaddyDC/osu_reader), [C++](https://github.com/ergrelet/osu-parser)
 - `.sm`: **StepMania series** chart
-  - StepMania C++ impl: [reader](https://github.com/stepmania/stepmania/blob/5dad6a1c9a1caba66ebc1aa0feab9bc920399455/src/NotesLoaderSM.cpp) and [writer](https://github.com/stepmania/stepmania/blob/5dad6a1c9a1caba66ebc1aa0feab9bc920399455/src/NotesWriterSM%60.cpp)
+  - StepMania C++ [parser](https://github.com/stepmania/stepmania/blob/5dad6a1c9a1caba66ebc1aa0feab9bc920399455/src/NotesLoaderSM.cpp) and [writer](https://github.com/stepmania/stepmania/blob/5dad6a1c9a1caba66ebc1aa0feab9bc920399455/src/NotesWriterSM%60.cpp)
+- `.ssc`: **StepMania 5** chart
+  - StepMania C++ [parser](https://github.com/stepmania/stepmania/blob/5dad6a1c9a1caba66ebc1aa0feab9bc920399455/src/NotesLoaderSSC.cpp) and [writer](https://github.com/stepmania/stepmania/blob/5dad6a1c9a1caba66ebc1aa0feab9bc920399455/src/NotesWriterSSC.cpp)
+  - StepMania [song class](https://github.com/stepmania/stepmania/blob/5_1-new/src/Song.h) and [chart class](https://github.com/stepmania/stepmania/blob/5_1-new/src/Steps.h)
+- `.mc`: **Malody** chart, including key, step, dj, catch, pad, taiko, ring, slide modes
+  - ["malody-convert" Python parser](https://github.com/kangalioo/malody-convert/blob/094f81168ef0b7bc4598db53931d3fe0b11031c4/chart.py#L159)
+  - ["osu2mc" Python parser and writer](https://github.com/deraium/osu2mc/blob/master/mc.py)
+- `.bms`/`.bme`/`.bml`: **Beat Mania series** chart, including bm98, bms, ddr4, ddr6, bme, bme3, bme5, bme7, 2dx keys
+  - ["Lunatic Rave 2" chart repository](http://vsrg.pbworks.com/w/page/121853115/Lunatic%20Rave%202)
+  - StepMania C++ [parser](https://github.com/stepmania/stepmania/blob/5dad6a1c9a1caba66ebc1aa0feab9bc920399455/src/NotesLoaderBMS.cpp) and [writer](https://github.com/stepmania/stepmania/blob/5dad6a1c9a1caba66ebc1aa0feab9bc920399455/src/NotesWriterBMS.cpp)
+  - [Bemuse JS parser](https://github.com/bemusic/bemuse-notechart/tree/master/src)
+---
+- `.dwi`: **Dance With Intensity** chart
+  - StepMania C++ [parser](https://github.com/stepmania/stepmania/blob/5dad6a1c9a1caba66ebc1aa0feab9bc920399455/src/NotesLoaderDWI.cpp) and [writer](https://github.com/stepmania/stepmania/blob/5dad6a1c9a1caba66ebc1aa0feab9bc920399455/src/NotesWriterDWI.cpp)
+- `.ksf`: **Kick It Up** chart
+  - StepMania C++ [parser](https://github.com/stepmania/stepmania/blob/5dad6a1c9a1caba66ebc1aa0feab9bc920399455/src/NotesLoaderKSF.cpp) and [writer](https://github.com/stepmania/stepmania/blob/5dad6a1c9a1caba66ebc1aa0feab9bc920399455/src/NotesWriterKSF.cpp)
 - `.sma`: **StepMania AMX**
   - StepMania AMX is a pump-oriented fork of StepMania 3.95
-  - StepMania C++ impl: [reader](https://github.com/stepmania/stepmania/blob/5dad6a1c9a1caba66ebc1aa0feab9bc920399455/src/NotesLoaderSMA.cpp) and [writer](https://github.com/stepmania/stepmania/blob/5dad6a1c9a1caba66ebc1aa0feab9bc920399455/src/NotesWriterSMA.cpp)
-- `.ssc`: **StepMania 5** chart
-  - StepMania C++ impl: [reader](https://github.com/stepmania/stepmania/blob/5dad6a1c9a1caba66ebc1aa0feab9bc920399455/src/NotesLoaderSSC.cpp) and [writer](https://github.com/stepmania/stepmania/blob/5dad6a1c9a1caba66ebc1aa0feab9bc920399455/src/NotesWriterSSC.cpp)
+  - StepMania C++ [parser](https://github.com/stepmania/stepmania/blob/5dad6a1c9a1caba66ebc1aa0feab9bc920399455/src/NotesLoaderSMA.cpp) and [writer](https://github.com/stepmania/stepmania/blob/5dad6a1c9a1caba66ebc1aa0feab9bc920399455/src/NotesWriterSMA.cpp)
 - `.vos`: **Virtual Orchestra Studio and CanMusic** chart, including 000, 001, 006, 022 versions
 - `.pms`: **pop'n music** chart, including pms, pms3, pms5, pmse keys
 - `.dtx`: **DTXMania** chart, including 6-key, 9-key drum, 5-key, 7-key guitar, and bass keys
-- `.gda`/`.g2d`: **DTXMania** chart
+  - [DTX Simfile repository](http://files.pinoypercussionfreaks.com/)
+- `.gda`/`.g2d`: **DTXMania** chart (older format)
   - [DTXmaniaNX C# impl](https://github.com/limyz/DTXmaniaNX/blob/master/DTXCreator/Code/00.App/CDTXInputOutput.cs)
 - `.msd`: **Dance Dance Revolution** chart
 - `.ssq`: **Dance Dance Revolution 4th Mix** chart
 - `.sdf`: **Pocket DDR** chart, derived from .sm
   - [StepMania-hosted docs](https://github.com/stepmania/stepmania/tree/master/Docs/SimfileFormats/SDF)
-- `.dwi`: **Dance With Intensity** chart
 - `.pt`: **DJMax** chart
 - `.ucs`: **Pump It Up** chart
 - `.dance`: **pydance** chart
   - [Description](https://github.com/stepmania/stepmania/blob/master/Docs/SimfileFormats/misc.txt), [Format](https://github.com/stepmania/stepmania/blob/master/Docs/SimfileFormats/dance-spec.txt), [Implementation](https://github.com/mbenkmann/pydance)
 - `.tja`: **Taiko Jiro** chart, including taiko and jube modes
-- `.ojn`: **O2Jam** chart
-- `.osu`: **osu!** chart, including osu, taiko, ctb, mania modes
 - `.xml`: **Music Master** chart
 - `.xml`: **Music Times** chart
 - `.vox`: **SOUND VOLTEX** chart
 - `.ksh`: **K-Shoot Mania** chart
 - `.imd`: **Rhythm Master** chart, classic mode
 - `.mde`: **Rhythm Master** chart, star motion mode
-- `.mc`: **Malody** chart, including key, step, dj, catch, pad, taiko, ring, slide modes
 - `.xml`: **Dynamix** chart
 - `.aff`: **Arcaea** chart
 - `.txt`: **Cytus** chart, including original and Version2
@@ -51,7 +59,7 @@ An aggregation of information about as many mania-style VSRG chart formats as po
 - `.json`: **StepMania Micro** chart
   - StepMania Micro is an old web-based copy of StepMania, playable [here](https://web.archive.org/web/20150110063934/http://old.stepmania.com/wiki/StepMania_Micro)
   - [Website source code](https://web.archive.org/web/20150110120332if_/https://dl.dropboxusercontent.com/u/2963913/smjs-0.3/index.html) (view source)
-  - StepMania C++ impl: [reader](https://github.com/stepmania/stepmania/blob/5dad6a1c9a1caba66ebc1aa0feab9bc920399455/src/NotesLoaderJson.cpp) and [writer](https://github.com/stepmania/stepmania/blob/5dad6a1c9a1caba66ebc1aa0feab9bc920399455/src/NotesWriterJson.cpp)
+  - StepMania C++ [parser](https://github.com/stepmania/stepmania/blob/5dad6a1c9a1caba66ebc1aa0feab9bc920399455/src/NotesLoaderJson.cpp) and [writer](https://github.com/stepmania/stepmania/blob/5dad6a1c9a1caba66ebc1aa0feab9bc920399455/src/NotesWriterJson.cpp)
 - `.xml`: **QQ Hyun Dance Mobile Game** chart, including star motion mode, quarter moon mode, marble mode, traditional mode, bubble mode
 - `.drb`: **DanceRail** chart
 - `.d2r`: Obscure old Japanese format
@@ -62,6 +70,11 @@ An aggregation of information about as many mania-style VSRG chart formats as po
   - Raindrop implementation: [reader](https://github.com/zardoru/raindrop/blob/662dd11f05994f6f36493575b04ecb64b04dcd7b/src/NoteLoaderFTB.cpp)
 - `???`: **DirectMove**
   - Found on the [StepMania Wikia page for StepMania AMX](https://step-mania.fandom.com/wiki/StepMania_AMX)
+- `.snp`: 
+  - [Open2Jam Java Parser](https://github.com/open2jamorg/open2jam/blob/master/parsers/src/org/open2jam/parsers/SNPParser.java)
+  - [Raindrop C++ Parser](https://github.com/zardoru/raindrop/blob/master/src/NoteLoaderOJN.cpp)
+- `.xnt`:
+  - [Open2Jam Java Parser](https://github.com/open2jamorg/open2jam/blob/master/parsers/src/org/open2jam/parsers/XNTChart.java)
 
 Sources and useful links:
 
